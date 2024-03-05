@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {addRoom} from "../utils/ApiFunctions";
 // import 'bootstrap/dist/css/bootstrap.css';
 import RoomTypeSelector from '../common/RoomTypeSelector';
+import { Link } from 'react-router-dom';
 
 const AddRoom = () => {
     const [newRoom, setNewRoom] = useState({
@@ -26,7 +27,7 @@ const AddRoom = () => {
         setNewRoom({...newRoom, [name]:value});
     }
 
-    const hnadleImageChange = (e) => {
+    const handleImageChange = (e) => {
         const selectedImage = e.target.files[0];
         setNewRoom({...newRoom, photo: selectedImage});
         setImagePreview(URL.createObjectURL(selectedImage));
@@ -98,7 +99,7 @@ const AddRoom = () => {
                                 name='photo'
                                 type='file'
                                 className='form-control'
-                                onChange={hnadleImageChange}/>
+                                onChange={handleImageChange}/>
                             {imagePreview && (
                                 <img src={imagePreview}
                                     alt='Preview Room Photo'
@@ -108,6 +109,9 @@ const AddRoom = () => {
                         </div>
 
                         <div className='d-grid gap-2 d-md-flex mt-2'>
+                            <Link to={"/existing-rooms"} className='btn btn-outline-info'>
+                                Back
+                            </Link>
                             <button className='btn btn-outline-primary ml-5'>
                                 Save Room
                             </button>
