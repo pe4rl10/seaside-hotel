@@ -103,7 +103,7 @@ export async function getBookingByConfirmationCode(confirmationCode){
         if(error.response && error.response.data){
             throw new Error(error.response.data);
         } else {
-            throw new Error(`Error finding booking : ${error.message}`;)
+            throw new Error(`Error finding booking : ${error.message}`);
         }
     }
 }
@@ -114,6 +114,6 @@ export async function cancelBooking(bookingId){
         const result = await api.delete(`/bookings/booking/${bookingId}/delete`);
         return result.data;
     } catch (error) {
-        throw new Error(`Error cancelling booking : ${error.message}`;)
+        throw new Error(`Error cancelling booking : ${error.message}`);
     }
 }
