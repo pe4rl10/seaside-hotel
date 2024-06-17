@@ -17,3 +17,13 @@ spring:
       max-file-size: 5MB
       max-request-size: 5MB
       file-size-threshold: 2KB
+#
+#security:
+#  jwt:
+#    secret-key: 0b628074cd7a634af73c06d8e26b5253e1c710121171c0b3099c6b33f00183896d094c458dc93f28146fbbad19c9cd08417e3071a43763e06d01e302d1320fe8
+#    expiration-time: 3600000
+
+auth:
+  token:
+    expirationInMils: 3600000
+    jwtSecret: 36763979244226452948404D635166546A576D5A7134743777217A25432A462D
