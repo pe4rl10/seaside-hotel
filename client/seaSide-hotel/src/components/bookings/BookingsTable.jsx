@@ -1,21 +1,28 @@
-import { parseISO } from 'date-fns';
+import { isWithinInterval } from 'date-fns';
 import React, { useEffect, useState } from 'react'
 import DateSlider from '../common/DateSlider';
+import moment from 'moment';
+
+const parseDateArray = (dateArray) => {
+    return new Date(dateArray[0], dateArray[1] - 1, dateArray[2]); // months are 0-indexed in JS Date
+}
 
 const BookingsTable = ({ bookingInfo, handleBookingCancellation}) => {
     const [ filteredBookings, setFilteredBookings ] = useState(bookingInfo);
+	console.log(bookingInfo)
 
     const filterBookings = (startDate, endDate) => {
         let filtered = bookingInfo;
-        if(startDate && endDate){
+        if (startDate && endDate) {
             filtered = bookingInfo.filter((booking) => {
-                const bookingStartDate = parseISO(booking.checkInDate);
-                const bookingEndDate = parseISO(booking.checkOutDate);
-                return bookingStartDate >= startDate && 
-                    bookingEndDate <= endDate;
-            })
-        }
+                const bookingStartDate = parseDateArray(booking.checkInDate);
+                const bookingEndDate = parseDateArray(booking.checkOutDate);
 
+                return isWithinInterval(bookingStartDate, { start: startDate, end: endDate }) || 
+                       isWithinInterval(bookingEndDate, { start: startDate, end: endDate }) || 
+                       (bookingStartDate <= startDate && bookingEndDate >= endDate);
+            });
+        }
         setFilteredBookings(filtered);
     }
 
@@ -47,13 +54,13 @@ const BookingsTable = ({ bookingInfo, handleBookingCancellation}) => {
 
                 <tbody className="text-center">
 					{filteredBookings.map((booking, index) => (
-						<tr key={booking.id}>
+						<tr key={booking.bookingId}>
 							<td>{index + 1}</td>
 							<td>{booking.bookingId}</td>
 							<td>{booking.room.id}</td>
 							<td>{booking.room.roomType}</td>
-							<td>{booking.checkInDate}</td>
-							<td>{booking.checkOutDate}</td>
+							<td>{moment(booking.checkInDate).subtract(1, "month").format("DD/MM/YYYY")}</td>
+							<td>{moment(booking.checkOutDate).subtract(1, "month").format("DD/MM/YYYY")}</td>
 							<td>{booking.guestFullName}</td>
 							<td>{booking.guestEmail}</td>
 							<td>{booking.numOfAdults}</td>

@@ -48,6 +48,7 @@ const FindBooking = () => {
 		try {
 			const data = await getBookingByConfirmationCode(confirmationCode)
 			setBookingInfo(data)
+            console.log(data)
 			setError(null)
 		} catch (error) {
 			setBookingInfo(clearBookingInfo)
