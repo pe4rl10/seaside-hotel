@@ -1,29 +1,24 @@
-server:
-  port: 9393
-
-spring:
-  datasource:
-    username: root
-    password: rootpassword
-    url: jdbc:mysql://localhost:3306/seaSide_hotel_db
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-      format_sql: true
-  servlet:
-    multipart:
-      max-file-size: 5MB
-      max-request-size: 5MB
-      file-size-threshold: 2KB
+#server:
+#  port: 9393
 #
-#security:
-#  jwt:
-#    secret-key: 0b628074cd7a634af73c06d8e26b5253e1c710121171c0b3099c6b33f00183896d094c458dc93f28146fbbad19c9cd08417e3071a43763e06d01e302d1320fe8
-#    expiration-time: 3600000
-
-auth:
-  token:
-    expirationInMils: 3600000
-    jwtSecret: 0b628074cd7a634af73c06d8e26b5253e1c710121171c0b3099c6b33f00183896d094c458dc93f28146fbbad19c9cd08417e3071a43763e06d01e302d1320fe8
+#spring:
+#  datasource:
+#    username: root
+#    password: rootpassword
+#    url: jdbc:mysql://localhost:3306/seaSide_hotel_db
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#  jpa:
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: update
+#      format_sql: true
+#  servlet:
+#    multipart:
+#      max-file-size: 5MB
+#      max-request-size: 5MB
+#      file-size-threshold: 2KB
+#
+#auth:
+#  token:
+#    expirationInMils: 3600000
+#    jwtSecret: 0b628074cd7a634af73c06d8e26b5253e1c710121171c0b3099c6b33f00183896d094c458dc93f28146fbbad19c9cd08417e3071a43763e06d01e302d1320fe8
