@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-	baseURL: "http://localhost:9393"
+	baseURL: "https://seaside-hotel-production.up.railway.app"
 })
 
 export const getHeader = () => {
